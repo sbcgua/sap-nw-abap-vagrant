@@ -1,9 +1,9 @@
-# SAP NW752 SP01 dev edition, vagrant config
+# Vagrant config for SAP NW752 SP01 dev edition
 
-**DRAFT, DON'T USE YET**
+**DRAFT, USE WITH CAUTION**
 
 TODO:
-- check hosts for strange records after install
+- check hosts for strange records after install - prevents normal DB startup
 - autoinstall license ???
 - finalize docs
 
