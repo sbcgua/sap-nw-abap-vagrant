@@ -1,0 +1,7 @@
+# artefacts
+*.log
+.vagrant
+
+# distrib dir
+distrib/*
+!distrib/.gitkeep

@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if [ -n "$(cat /etc/hosts | grep vhcalnplci.dummy.nodomain )" ]; then
+  echo "Seems the system configs already patched, skipping"
+  exit 0
+fi
+
+echo "Patching /etc/hosts ..."
+echo "10.0.2.15 vhcalnplci vhcalnplci.dummy.nodomain" | sudo tee -a /etc/hosts
+
+echo "Enabling uuidd ..."
+sudo systemctl enable uuidd.service
+sudo service uuidd start
+
+echo "Installing packages (mc, csh, etc) ..."
+sudo apt-get -q update
+sudo apt-get -y -q --no-install-recommends install mc csh libaio1 unrar expect
