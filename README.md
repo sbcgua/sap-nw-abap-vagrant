@@ -31,7 +31,7 @@
 
 Additional comments:
 
-- you may start vm from any directory but then you need to address it by id or name. Run `vagrant global-config` to check the name. It should be `sapnw`. So the command to vm would look like `vagrant up sapnw` or `vagrant ssh sapnw -c startsap.sh`
+- you may start vm from any directory but then you need to address it by id or name. Run `vagrant global-status` to check the name. It should be `sapnw`. So the command to vm would look like `vagrant up sapnw` or `vagrant ssh sapnw -c startsap.sh`
 - `startsap.sh` and `stopsap.sh` are shortcuts that are placed to `~/.local/bin` during installation. They contain command like `sudo -i -u npladm startsap`. Can be used for other short scripts.
 
 ## Infos
