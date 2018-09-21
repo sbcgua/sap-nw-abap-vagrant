@@ -15,8 +15,6 @@ cd /vagrant/distrib
 cp /vagrant/scripts/run-install.sh /tmp
 chmod +x install.sh
 chmod +x /tmp/run-install.sh
-
 sudo /tmp/run-install.sh
 rm /tmp/run-install.sh
 
-# TODO remove wrong hosts lines

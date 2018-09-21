@@ -75,27 +75,6 @@ Vagrant.configure("2") do |config|
     vb.name = "Sap-nw752"
     vb.memory = "6144" # 6 GB
     # vb.memory = "4096" # 4 GB + enable add_swap.sh below !!!
-
-    # path_to_disk = File.realpath( "." ).to_s + "/sybase.vdi"
-    # if ARGV[0] == "up" && ! File.exist?(path_to_disk) 
-    #   puts "Creating sybase volume #{path_to_disk}"
-    #   vb.customize [
-    #     'createhd', 
-    #     '--filename', path_to_disk, 
-    #     '--format',   'VDI', 
-    #     '--size',     1000 * 1024,  # 1GB
-    #     '--variant', 'Standard'     # Dynamic
-    #   ] 
-    #   vb.customize [
-    #     'storageattach', :id, 
-    #     '--storagectl',  'SCSI',
-    #     '--port',   2,
-    #     '--device', 0, 
-    #     '--type',   'hdd',
-    #     '--medium', path_to_disk
-    #   ]
-    # end
-
   end
 
   config.vm.provision "shell", path: "scripts/add_disk.sh"
