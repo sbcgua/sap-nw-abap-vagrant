@@ -62,5 +62,6 @@ Currently machine is setup to consume 6GB. Though in my experiance 4GB is usuall
 ### Regards and references
 
 - got some script ideas (expect) from https://github.com/tobiashofmann/sap-nw-abap-docker
+- https://github.com/wechris/SAPNW75SPS02 as an inspiration
 - concept on how to create additional VB drives in VM folder from https://gist.github.com/leifg/4713995
 - cool guide on swap file in ubuntu: https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04
