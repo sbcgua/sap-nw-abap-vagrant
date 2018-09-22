@@ -4,12 +4,13 @@
 
 - install **virtual box**
 - install **vagrant**
-- vagrant may require Powershell 3 on Win7. If this is an issue check [this](https://docs.microsoft.com/en-us/skypeforbusiness/set-up-your-computer-for-windows-powershell/download-and-install-windows-powershell-3-0).
+- vagrant may require Powershell 3 on Window 7. If this is an issue check [this](https://docs.microsoft.com/en-us/skypeforbusiness/set-up-your-computer-for-windows-powershell/download-and-install-windows-powershell-3-0).
 - download this repository (as zip or `git clone`)
 - put uncompressed distribution files into `distrib` subfolder of the cloned dir
 - open shell in cloned directory (where `Vagrantfile` is)
 - run `vagrant up`
 - wait for installation to finish ... (took ~1-1.5 hours on my laptop)
+- you can connect to the system and follow the post-install steps from the official guide. The system will be at 127.0.0.1, 00, NPL.
 
 ## How to use
 
@@ -29,6 +30,8 @@
     - in the Vagrantfile directory ... or after `vagrant global-config`
     - run `vagrant destroy`
 
+Alternatively you can run VM directly from virtual box, Vagrant did it's job by now and now it is just a convenient option.
+
 Additional comments:
 
 - you may start vm from any directory but then you need to address it by id or name. Run `vagrant global-status` to check the name. It should be `sapnw`. So the command to vm would look like `vagrant up sapnw` or `vagrant ssh sapnw -c startsap.sh`
@@ -45,7 +48,7 @@ A tool to setup virtual environments conveniently. No need to go through boring 
 1) Ideologically docker is supposed to be stateless. Databases should be in volumes, not inside docker layer.
 2) Besides, docker storage layer is slower than volumes
 
-Well, probably this can be solved. /sybase directory can be mounted to volume. Also logs and transports should be considered. Well, I don't have enough basis skills for this :) Maybe someday.
+Note: probably this can be solved. /sybase directory can be mounted to volume. Also logs and transports should be considered. Well, I don't have enough basis skills for this :) Maybe someday.
 
 ### Why Ubuntu
 

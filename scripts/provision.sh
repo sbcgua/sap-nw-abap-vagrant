@@ -6,8 +6,8 @@ if [ -n "$(cat /etc/hosts | grep vhcalnplci.dummy.nodomain )" ]; then
 fi
 
 echo "Patching /etc/hosts ..."
-sudo sed -i.bak '/127.*vhcalnplci/d' /etc/hosts
 echo "10.0.2.15 vhcalnplci vhcalnplci.dummy.nodomain" | sudo tee -a /etc/hosts
+sudo sed -i.bak '/127.*vhcalnplci/d' /etc/hosts
 
 echo "Local start/stopsap scripts..."
 mkdir -p $HOME/.local/bin
