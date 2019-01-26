@@ -63,6 +63,9 @@ Vagrant.configure("2") do |config|
   # Check for updates only on `vagrant box outdated`
   config.vm.box_check_update = false
 
+  # stopsap may take time
+  config.vm.graceful_halt_timeout = 600
+
   # Network
   config.vm.network "forwarded_port", guest: 22,    guest_ip: "10.0.2.15", host_ip: "127.0.0.1", host: 2222,  id: "ssh", auto_correct: true
   config.vm.network "forwarded_port", guest: 8000,  guest_ip: "10.0.2.15", host_ip: "127.0.0.1", host: 8000,  id: "http"
@@ -70,13 +73,14 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 3300,  guest_ip: "10.0.2.15", host_ip: "127.0.0.1", host: 3300,  id: "rfc"
   config.vm.network "forwarded_port", guest: 3200,  guest_ip: "10.0.2.15", host_ip: "127.0.0.1", host: 3200,  id: "sapgui"
 
-
+  # Virtualbox settings
   config.vm.provider "virtualbox" do |vb|
     vb.name = "Sap-nw752"
     vb.memory = "6144" # 6 GB
     # vb.memory = "4096" # 4 GB + enable add_swap.sh below !!!
   end
 
+  # Provision scripts
   config.vm.provision "shell", path: "scripts/add_disk.sh"
   # config.vm.provision "shell", path: "scripts/add_swap.sh"
   config.vm.provision "shell", path: "scripts/provision.sh"

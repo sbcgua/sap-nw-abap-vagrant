@@ -1,0 +1,24 @@
+[Unit]
+Description=SAP NW server
+After=network.target
+
+[Service]
+# delay start
+Type=idle
+# mark with this in syslog
+SyslogIdentifier=sapnw
+# Manual only
+Restart=no
+
+User=npladm
+WorkingDirectory=/home/npladm
+
+# csh needed for environment
+ExecStart=/bin/csh -c startsap
+ExecStop=/bin/csh -c stopsap
+RemainAfterExit=yes
+TimeoutStartSec=300
+TimeoutStopSec=300
+
+[Install]
+WantedBy=multi-user.target

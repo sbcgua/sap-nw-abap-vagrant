@@ -1,6 +1,7 @@
 # artefacts
 *.log
 .vagrant
+.vscode
 
 # distrib dir
 distrib/*

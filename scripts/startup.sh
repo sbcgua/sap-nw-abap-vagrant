@@ -7,16 +7,18 @@
 # fi
 
 echo "Local start/stopsap scripts..."
-_VAGRANT_HOME=/home/vagrant
-_VAGRANT_HOME_BIN=$_VAGRANT_HOME/.local/bin
+_LOCAL_BIN=/usr/local/bin
+cp /vagrant/scripts/startsap.sh $_LOCAL_BIN
+cp /vagrant/scripts/stopsap.sh $_LOCAL_BIN
+chmod 755 $_LOCAL_BIN/startsap.sh
+chmod 755 $_LOCAL_BIN/stopsap.sh
 
-mkdir -p $_VAGRANT_HOME_BIN
-chown vagrant:vagrant $_VAGRANT_HOME_BIN
-chmod 700 $_VAGRANT_HOME_BIN
+echo "Installing service..."
+_SERVICE_PATH=/etc/systemd/system/sapnw.service
+cp /vagrant/scripts/sapnw.service /etc/systemd/system/
+chmod 644 $_SERVICE_PATH
+systemctl daemon-reload
+systemctl enable sapnw
+systemctl status sapnw --no-pager --full
 
-cp /vagrant/scripts/startsap.sh $_VAGRANT_HOME_BIN
-cp /vagrant/scripts/stopsap.sh $_VAGRANT_HOME_BIN
-chmod 700 $_VAGRANT_HOME_BIN/startsap.sh
-chmod 700 $_VAGRANT_HOME_BIN/stopsap.sh
-chown vagrant:vagrant $_VAGRANT_HOME_BIN/startsap.sh
-chown vagrant:vagrant $_VAGRANT_HOME_BIN/stopsap.sh
+# systemctl start sapnw
