@@ -1,0 +1,6 @@
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+# Shell files and service = LF
+*.sh text eol=lf
+*.service text eol=lf
