@@ -1,12 +1,13 @@
 {
   "name": "certinst",
   "version": "1.0.0",
-  "description": "",
+  "description": "certificate installator for NW752",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Alexander Tsybulsky",
+  "repository": "https://github.com/sbcgua/sap-nw-abap-vagrant",
   "license": "ISC",
   "dependencies": {
     "node-rfc": "^1.0.0-rc7"

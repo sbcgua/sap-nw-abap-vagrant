@@ -83,7 +83,7 @@ async function listCertificates(isVerbose = true) {
             let num = 0;
             for (const cert of res.ET_CERTIFICATELIST) {
                 const certCN = await spawnOpenssl(cert);
-                console.log(`  ${++num}:`, certCN);
+                console.log(`  ${++num}:`, certCN.replace('\n', ''));
             }
         }
         return res.ET_CERTIFICATELIST.length;
@@ -113,16 +113,17 @@ async function installCertificates(dir) {
     console.log('Certificates before installation:', certsBefore);
 
     for (const file of files) {
-        console.log(file);
-        const certBlob = await readFileAsync(file);
         try {
+            const certBlob = await readFileAsync(file);
             const res = await callRfc('SSFR_PUT_CERTIFICATE', {
-            IS_STRUST_IDENTITY: { PSE_CONTEXT: 'SSLC', PSE_APPLIC: 'ANONYM' },
-            IV_CERTIFICATE: certBlob,
+                IS_STRUST_IDENTITY: { PSE_CONTEXT: 'SSLC', PSE_APPLIC: 'ANONYM' },
+                IV_CERTIFICATE: certBlob,
             });
-            console.log('Result SSFR_PUT_CERTIFICATE:', res);
+            // console.log('Result SSFR_PUT_CERTIFICATE:', res);
+            console.log(file, '- OK');
         } catch(err) {
-            console.error('Error invoking SSFR_PUT_CERTIFICATE:', err);
+            // console.error('Error invoking SSFR_PUT_CERTIFICATE:', err);
+            console.log(file, '- FAILED');
         }
     }
 
@@ -170,4 +171,3 @@ process.on('unhandledRejection', async (reason, p) => {
     process.exit(1);
 });
 main();
-

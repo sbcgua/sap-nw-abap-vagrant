@@ -86,4 +86,5 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "scripts/pre_install.sh"
   config.vm.provision "shell", path: "scripts/install_nw.sh"
   config.vm.provision "shell", path: "scripts/startup.sh"
+  config.vm.provision "shell", path: "scripts/post_install.sh"
 end
