@@ -13,6 +13,9 @@ echo "Enabling uuidd ..."
 sudo systemctl enable uuidd.service
 sudo service uuidd start
 
+# Adding nodejs source for after-installation scripts
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+
 echo "Installing packages (mc, csh, etc) ..."
 sudo apt-get -q update
 sudo apt-get -y -q --no-install-recommends install mc csh libaio1 unrar expect
