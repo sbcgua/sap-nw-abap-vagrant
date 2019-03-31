@@ -119,10 +119,8 @@ async function installCertificates(dir) {
                 IS_STRUST_IDENTITY: { PSE_CONTEXT: 'SSLC', PSE_APPLIC: 'ANONYM' },
                 IV_CERTIFICATE: certBlob,
             });
-            // console.log('Result SSFR_PUT_CERTIFICATE:', res);
             console.log(file, '- OK');
         } catch(err) {
-            // console.error('Error invoking SSFR_PUT_CERTIFICATE:', err);
             console.log(file, '- FAILED');
         }
     }

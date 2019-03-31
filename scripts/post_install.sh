@@ -6,9 +6,14 @@ if [ $? -ne 0 ]; then
     sudo apt-get install -y nodejs
 fi
 
-echo "Nodejs installed" `node -v`
+echo "Nodejs installed:" `node -v`
 
-export LD_LIBRARY_PATH=/usr/sap/NPL/D00/exe/
+if [ -z "$(cat ~/.bashrc | grep /usr/sap/NPL/D00/exe/)" ]; then
+  echo "" >> ~/.bashrc
+  echo "# Path to SAP libs" >> ~/.bashrc
+  echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/usr/sap/NPL/D00/exe/" >> ~/.bashrc
+fi
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/sap/NPL/D00/exe/
 
 echo "Preparing to install certificates ..."
 cp -R /vagrant/certinst.js ~/
