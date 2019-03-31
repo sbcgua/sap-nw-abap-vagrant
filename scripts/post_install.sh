@@ -3,32 +3,18 @@
 node -v > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo "Installing nodejs for further scripting..."
-    sudo apt-get install -y nodejs
+    sudo apt-get install -y -q nodejs
 fi
 
 echo "Nodejs installed:" `node -v`
 
-if [ -z "$(cat ~/.bashrc | grep /usr/sap/NPL/D00/exe/)" ]; then
-  echo "" >> ~/.bashrc
-  echo "# Path to SAP libs" >> ~/.bashrc
-  echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/usr/sap/NPL/D00/exe/" >> ~/.bashrc
+if [ -z "$(cat /home/vagrant/.bashrc | grep /usr/sap/NPL/D00/exe/)" ]; then
+  echo "" >> /home/vagrant/.bashrc
+  echo "# Path to SAP libs" >> /home/vagrant/.bashrc
+  echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/usr/sap/NPL/D00/exe/" >> /home/vagrant/.bashrc
 fi
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/sap/NPL/D00/exe/
 
-echo "Preparing to install certificates ..."
-cp -R /vagrant/certinst.js ~/
-cd ~/certinst.js
-npm install
-
-# echo "Certificates installed:" `node certinst.js list -s`
-echo "Testing connection ..."
-node certinst.js test
-echo
-
-echo "Installing certificates..."
-node certinst.js install
-echo
-
-echo "List certificates ..."
-node certinst.js list
-echo
+# Install SSL certificates
+cp /vagrant/scripts/install_ssl_certificates.sh /tmp
+chmod +x /tmp/install_ssl_certificates.sh
+sudo -i -u vagrant /tmp/install_ssl_certificates.sh

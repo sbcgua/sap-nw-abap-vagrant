@@ -13,10 +13,10 @@ fi
 
 if [ -e /usr/sap/NPL/D00/exe/sapstart ] && [ ! -e $_SERVICE_PATH ]; then
     echo "Installing service..."
-    cp /vagrant/scripts/sapnw.service /etc/systemd/system/
+    cp /vagrant/scripts/service/sapnw.service /etc/systemd/system/
     chmod 644 $_SERVICE_PATH
     systemctl daemon-reload
     systemctl enable sapnw
-    systemctl status sapnw --no-pager --full
+    systemctl status sapnw --no-pager --full || true
     # systemctl start sapnw
 fi
