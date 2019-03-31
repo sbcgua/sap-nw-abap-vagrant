@@ -1,6 +1,14 @@
 # Vagrant config for SAP NW752 SP01 dev edition
 
-*Version: 1.1*
+*Version: 1.2*
+
+## What is it ?
+
+This repo contains a Vagrant script and set of deployment scripts which installs SAP NW752 SP01 dev edition in Ubuntu in Virtual Box environment with **minimal** manual steps required. The target is that you copy the script, download distribs, run Vagrant which will do allmost of steps from the offical guide and some more, and then you have ready system which just needs the post install license steps. In addition to the official installation guide the script does:
+
+- configures NW to autostart on virtual machine startup
+- installs github and gitlab SSL certificates to use with abapGit
+- installs latest abapGit (TODO)
 
 ## How to install
 
@@ -11,7 +19,7 @@
 - open shell in cloned directory (where `Vagrantfile` is)
 - run `vagrant up`
 - wait for installation to finish ... (took ~1-1.5 hours on my laptop)
-- you can connect to the system and follow the post-install steps from the official guide. The system will be at 127.0.0.1, 00, NPL.
+- you can connect to the system and follow the post-install steps from the official guide (in particular SAP licence installation). The system will be at 127.0.0.1, 00, NPL.
 
 ## How to use
 
@@ -78,7 +86,7 @@ Note: probably this can be solved. /sybase directory can be mounted to volume. A
 
 1) Ubuntu is very popular linux flavor. The community is huge and there are a lot of materials on how to solve this or that issue
 2) Bare ubuntu server is just ~1 GB in size
-3) and yes, I know debian-like system beter than other flavors ;) might be the main reason.
+3) and yes, I know debian-like system better than other flavors ;) might be the main reason.
 
 ### Memory
 
@@ -86,9 +94,21 @@ Currently machine is setup to consume 6GB. Though in my experiance 4GB is usuall
 - uncomment `vb.memory = "4096"` in `Vagrantfile` (and comment the one with 6GB)
 - uncomment `config.vm.provision "shell", path: "scripts/add_swap.sh"` - this will activate swap during installation. Or just run it after install via ssh `/vagrant/scripts/add_swap.sh`
 
+### SSL certificates
+
+As one of the late steps in the installation the script installs SSL certificates from `certificates` directory. The repositiry contains certificates of github and gitlab. However, you can add more (in *.cer format) before running `vagrant up` for the first time. The script will install all the certificates that are in the folder. In order to initiate certificate script again later (if you don't want to install certificates manually via `STRUST`), login to ssh and run `/vagrant/scripts/post_install.sh`.
+
 ### Regards and references
 
 - got some script ideas (expect) from https://github.com/tobiashofmann/sap-nw-abap-docker
 - https://github.com/wechris/SAPNW75SPS02 as an inspiration
 - concept on how to create additional VB drives in VM folder from https://gist.github.com/leifg/4713995
 - cool guide on swap file in ubuntu: https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04
+- @filak-sap and https://github.com/filak-sap/sap-nw-abap-docker for ideas in inspiration
+- https://github.com/SAP/node-rfc - nodejs lib to call SAP RFCs, used for SSL certificate installation
+
+### TODO
+
+- download github/lab certificates directly from internet ?
+- deploy abapgit to the system via https://github.com/marcellourbani/abap-adt-api or RFCs
+- migrate to Ubuntu 18.04 LTS (Bionic Beaver)

@@ -1,0 +1,21 @@
+sap-nw-abap-vagrant changelog
+=============================
+
+Legend
+------
+* : fixed
+! : changed
++ : added
+- : removed
+
+2019-03-31 v1.2.0
+------------------
++ install SSL certificates with nodejs and node-rfc
+
+2019-01-26 v1.1.0
+------------------
++ autostart with system startup (service)
+
+2018-09-22 v1.0.0
+------------------
++ initial release
