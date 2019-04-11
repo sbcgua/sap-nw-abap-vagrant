@@ -22,7 +22,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/sap/NPL/D00/exe/
 echo "Preparing to install certificates ..."
 cp -R /vagrant/certinst.js ~/
 cd ~/certinst.js
-npm install
+npm -q install
 
 # echo "Certificates installed:" `node certinst.js list -s`
 echo "Testing connection ..."
