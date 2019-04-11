@@ -1,0 +1,22 @@
+{
+  "root": true,
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "env": {
+    "node": true,
+    "jest": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended"
+  ],
+  "rules": {
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "semi":   ["error", "always", { "omitLastInOneLineBlock": true}],
+    "no-console": "off",
+    "indent": ["error", 4],
+    "no-trailing-spaces": ["error"]
+  }
+}

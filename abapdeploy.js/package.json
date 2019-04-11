@@ -1,0 +1,16 @@
+{
+  "name": "abapdeploy",
+  "version": "1.0.0",
+  "description": "abap progrmas installator for NW752",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexander Tsybulsky",
+  "repository": "https://github.com/sbcgua/sap-nw-abap-vagrant",
+  "license": "ISC",
+  "dependencies": {
+    "abap-adt-api": "^0.5.17",
+    "commander": "^2.20.0"
+  }
+}
