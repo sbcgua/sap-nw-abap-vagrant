@@ -12,11 +12,11 @@ if [ ! -e /vagrant/distrib/install.sh ]; then
 fi
 
 cd /vagrant/distrib
-cp /vagrant/scripts/run-install.sh /tmp
-chmod +x install.sh
-chmod +x /tmp/run-install.sh
-sudo /tmp/run-install.sh
-rm /tmp/run-install.sh
+# cp /vagrant/scripts/run-install.sh /tmp
+# chmod +x install.sh
+# chmod +x /tmp/run-install.sh
+sudo expect -f /vagrant/scripts/provision/install_nw.expect
+# rm /tmp/run-install.sh
 
 if [ ! -n "$(netstat -tan4 | grep 3200)" ]; then
     echo "Waiting for NW to start ..."

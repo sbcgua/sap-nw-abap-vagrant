@@ -12,7 +12,7 @@ if [ ! -e $_LOCAL_BIN/startsap.sh ]; then
 fi
 
 if [ -e /usr/sap/NPL/D00/exe/sapstart ] && [ ! -e $_SERVICE_PATH ]; then
-    echo "Installing service..."
+    echo "Installing NW service..."
     cp /vagrant/scripts/service/sapnw.service /etc/systemd/system/
     chmod 644 $_SERVICE_PATH
     systemctl daemon-reload
