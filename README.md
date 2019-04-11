@@ -7,8 +7,8 @@
 This repo contains a Vagrant script and set of deployment scripts which installs SAP NW752 SP01 dev edition in Ubuntu in Virtual Box environment with **minimal** manual steps required. The target is that you copy the script, download distribs, run Vagrant which will do allmost of steps from the offical guide and some more, and then you have ready system which just needs the post install license steps. In addition to the official installation guide the script does:
 
 - configures NW to autostart on virtual machine startup
-- installs github and gitlab SSL certificates to use with abapGit
-- installs latest abapGit (TODO)
+- can *optionally* install github and gitlab SSL certificates to use with abapGit
+- can *optionally* install latest abapGit
 
 ## How to install
 
@@ -19,11 +19,12 @@ This repo contains a Vagrant script and set of deployment scripts which installs
 - open shell in cloned directory (where `Vagrantfile` is)
 - run `vagrant up`
 - wait for installation to finish ... (took ~1-1.5 hours on my laptop)
-- you can connect to the system and follow the post-install steps from the official guide (in particular SAP licence installation). The system will be at 127.0.0.1, 00, NPL.
+- you can connect to the system and follow the post-install steps from the official guide (in particular SAP licence installation). The system will be at **127.0.0.1, 00, NPL**
+- *optionally*, run `vagrant ssh -c "sudo /vagrant/scripts/install_addons.sh"` to install SSL certificates mentioned above and latest [abapGit](https://github.com/larshp/abapGit). This can only be done **AFTER** licence installation.
 
 ## How to use
 
-Starting from v1.1 of this repo the scripts install sapnw as a `systemd` service and enables it by default. So the netveawer should automatically start on boot (note that it will take a minute or two after the machine is up) and you should be able to connect. On the system halt the service will attempt to gracefully stop NW (with 5 min timeout). If you want to disable the service for whatever reason run `vagrant ssh -c sudo systemctl disable sapnw`, then start/stop sap manually (see below).
+Starting from v1.1 of this repo the scripts install sapnw as a `systemd` service and enables it by default. So the netveawer should automatically start on boot (note that it will take a minute or two after the machine is up) and you should be able to connect. On the system halt the service will attempt to gracefully stop NW (with 5 min timeout). If you want to disable the service for whatever reason run `vagrant ssh -c "sudo systemctl disable sapnw"`, then start/stop sap manually (see below).
 
 ### Start/stop virtual machine
 
@@ -41,7 +42,7 @@ Alternatively you can run VM directly from virtual box, Vagrant did it's job by 
 
 ### Useful commands for `systemd` service control
 
-- the following commands can be issued either with `vagrant ssh -c <command>` or when logged in the system with `vagrant ssh`
+- the following commands can be issued either with `vagrant ssh -c "<command>"` or when logged in the system with `vagrant ssh`
 - check service status
     - `sudo systemctl status sapnw`
 - starting/stopping
@@ -96,7 +97,7 @@ Currently machine is setup to consume 6GB. Though in my experiance 4GB is usuall
 
 ### SSL certificates
 
-As one of the late steps in the installation the script installs SSL certificates from `certificates` directory. The repositiry contains certificates of github and gitlab. However, you can add more (in *.cer format) before running `vagrant up` for the first time. The script will install all the certificates that are in the folder. In order to initiate certificate script again later (if you don't want to install certificates manually via `STRUST`), login to ssh and run `/vagrant/scripts/post_install.sh`.
+SSL certificatesinstallation can be triggered by `/vagrant/scripts/install_addons.sh` or separate `/vagrant/scripts/addons/install_ssl_certificates.sh` scripts. It install the files from `certificates` directory. The repositiry contains certificates of github and gitlab. However, you can add more (in *.cer format) before running the script above. The script will install all the certificates that are in the folder. In order to initiate certificate script again later (if you don't want to install certificates manually via `STRUST`), login to ssh and run `/vagrant/scripts/addons/install_ssl_certificates.sh`.
 
 ### Regards and references
 
@@ -106,9 +107,10 @@ As one of the late steps in the installation the script installs SSL certificate
 - cool guide on swap file in ubuntu: https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04
 - @filak-sap and https://github.com/filak-sap/sap-nw-abap-docker for ideas in inspiration
 - https://github.com/SAP/node-rfc - nodejs lib to call SAP RFCs, used for SSL certificate installation
+- @marcellourbani for his https://github.com/marcellourbani/abap-adt-api (cool!)
 
 ### TODO
 
 - download github/lab certificates directly from internet ?
-- deploy abapgit to the system via https://github.com/marcellourbani/abap-adt-api or RFCs
 - migrate to Ubuntu 18.04 LTS (Bionic Beaver)
+- improve abapdeploy.js
