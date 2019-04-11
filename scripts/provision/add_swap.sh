@@ -2,8 +2,8 @@
 
 echo "Adding swap ..."
 if [ -n "$(swapon --show)" ]; then
-  echo "  swap is already activated, skipping"
-  exit 0
+    echo "  swap is already activated, skipping"
+    exit 0
 fi
 
 # Creating swap file

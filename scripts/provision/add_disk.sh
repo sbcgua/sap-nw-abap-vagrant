@@ -2,8 +2,8 @@
 
 echo "Preparing sybase disk ..."
 if [ -e /dev/disk/by-label/sybase ]; then
-  echo "  disk already added, skipping"
-  exit 0
+    echo "  disk already added, skipping"
+    exit 0
 fi
 
 echo 'start=2048, type=83' | sudo sfdisk -q /dev/sdc # TODO improve device detection

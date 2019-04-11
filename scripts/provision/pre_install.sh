@@ -1,8 +1,8 @@
 #!/bin/sh
 
 if [ -n "$(cat /etc/hosts | grep vhcalnplci.dummy.nodomain )" ]; then
-  echo "Seems the system configs already patched, skipping"
-  exit 0
+    echo "Seems the system configs already patched, skipping"
+    exit 0
 fi
 
 echo "Patching /etc/hosts ..."
@@ -12,9 +12,6 @@ sudo sed -i.bak '/127.*vhcalnplci/d' /etc/hosts
 echo "Enabling uuidd ..."
 sudo systemctl enable uuidd.service
 sudo service uuidd start
-
-# Adding nodejs source for after-installation scripts
-curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 
 echo "Installing packages (mc, csh, etc) ..."
 sudo apt-get -q update
