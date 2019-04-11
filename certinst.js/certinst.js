@@ -60,13 +60,13 @@ async function testConnection(isVerbose = true) {
 }
 
 function spawnOpenssl(buf) {
-    return new Promise((resolve, rejest) => {
+    return new Promise((resolve, reject) => {
         const openssl = spawn('openssl', ['x509', '-inform', 'der', '-noout', '-subject']); //, '-in', 'cert.cer']);
 
         let output = '';
         openssl.stdout.on('data', (data) => { output += data });
         openssl.stderr.on('data', (data) => { console.log(`openssl error: ${data}`) });
-        openssl.on('close', (code) => resolve(output));
+        openssl.on('close', (code) => code ? reject(code) : resolve(output));
 
         openssl.stdin.write(buf);
         openssl.stdin.end();
@@ -99,7 +99,7 @@ function getCertFiles(dir) {
 }
 
 async function installCertificates(dir) {
-    
+
     const files = getCertFiles(dir);
 
     try {
@@ -115,10 +115,11 @@ async function installCertificates(dir) {
     for (const file of files) {
         try {
             const certBlob = await readFileAsync(file);
-            const res = await callRfc('SSFR_PUT_CERTIFICATE', {
+            const res = await callRfc('SSFR_PUT_CERTIFICATE', { // eslint-disable-line no-unused-vars
                 IS_STRUST_IDENTITY: { PSE_CONTEXT: 'SSLC', PSE_APPLIC: 'ANONYM' },
                 IV_CERTIFICATE: certBlob,
             });
+            // console.log(res);
             console.log(file, '- OK');
         } catch(err) {
             console.log(file, '- FAILED');
@@ -132,7 +133,7 @@ async function installCertificates(dir) {
 
 async function main() {
     const command = process.argv[2] ? process.argv[2].toLowerCase() : null;
-    
+
     if (!['list', 'test', 'install'].includes(command)) {
         [
             'Usage: node certinst.js <command>',
@@ -145,7 +146,7 @@ async function main() {
     }
 
     const isSilent = (process.argv[3] === '-s');
-    
+
     if (command === 'test') {
         const success = await testConnection(!isSilent);
         process.exit(success ? 0 : 1);
