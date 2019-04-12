@@ -55,6 +55,7 @@ async function installProg(name, source) {
         // console.log(newsource);
 
         const result = await client.activate( name, path );
+        console.log(`Program ${name} was activated`);
         console.log(result);
     } finally {
         client.dropSession();

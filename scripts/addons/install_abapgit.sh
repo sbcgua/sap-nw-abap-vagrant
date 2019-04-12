@@ -23,4 +23,4 @@ echo "Installing abapgit ..."
 export AD_IP=localhost
 export AD_USER=developer
 export AD_PASS=Down1oad
-node abapdeploy.js -f /tmp/zabapgit.abap -p zabapgit
+node abapdeploy.js -f /tmp/zabapgit.abap -p zabapgit_full

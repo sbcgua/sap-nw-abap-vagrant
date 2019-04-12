@@ -101,11 +101,13 @@ SSL certificatesinstallation can be triggered by `/vagrant/scripts/install_addon
 
 ### Regards and references
 
+- [AS ABAP 752 SP01, developer edition, official announce](https://blogs.sap.com/2018/09/13/as-abap-752-sp01-developer-edition-to-download/)
+- [AS ABAP 7.52 SP01, developer edition: Concise installation guide](https://blogs.sap.com/2018/09/13/as-abap-7.52-sp01-developer-edition-concise-installation-guide/)
 - got some script ideas (expect) from https://github.com/tobiashofmann/sap-nw-abap-docker
 - https://github.com/wechris/SAPNW75SPS02 as an inspiration
 - concept on how to create additional VB drives in VM folder from https://gist.github.com/leifg/4713995
 - cool guide on swap file in ubuntu: https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04
-- @filak-sap and https://github.com/filak-sap/sap-nw-abap-docker for ideas in inspiration
+- @filak-sap and https://github.com/filak-sap/sap-nw-abap-docker for ideas and inspiration
 - https://github.com/SAP/node-rfc - nodejs lib to call SAP RFCs, used for SSL certificate installation
 - @marcellourbani for his https://github.com/marcellourbani/abap-adt-api (cool!)
 

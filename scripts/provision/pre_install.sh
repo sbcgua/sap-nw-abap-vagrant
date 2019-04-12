@@ -16,3 +16,4 @@ sudo service uuidd start
 echo "Installing packages (mc, csh, etc) ..."
 sudo apt-get -q update
 sudo apt-get -y -q --no-install-recommends install mc csh libaio1 unrar expect
+# + libstdc++6 ?
