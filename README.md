@@ -81,7 +81,7 @@ A tool to setup virtual environments conveniently. No need to go through boring 
 1) Imho docker is supposed to be stateless. Databases should be in volumes, not inside docker layer.
 2) Besides, docker storage layer is slower than volumes (AFAIK)
 
-P.S.: Probably this can be solved. /sybase directory can be mounted to volume. Also logs and transports should be considered. Well, I don't have enough basis skills for this :) Maybe someday.
+P.S.: Probably this can be solved. /sybase directory can be mounted to volume. Also logs and transports should be considered. Well, I don't have enough basis skills for this :) Maybe someday.  
 P.P.S.: Docker has a lot of potential in terms of composability. E.g. compose several pods with NW dev edition, HANA express for sidecar, configured SMTP server and make them interact. Feel free to reuse the scripts from the repo, they should be very portable to docker, in fact they work inside Ubuntu so might be zero changes needed.
 
 ### Why Ubuntu
