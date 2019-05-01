@@ -10,6 +10,8 @@ This repo contains a Vagrant script and set of deployment scripts which installs
 - can *optionally* install github and gitlab SSL certificates to use with abapGit
 - can *optionally* install latest abapGit
 
+For a quick start [watch this video](https://www.youtube.com/watch?v=-BeEF1U-cqQ)
+
 ## How to install
 
 - install **virtual box**
@@ -99,6 +101,12 @@ Currently machine is setup to consume 6GB. Though in my experiance 4GB is usuall
 ### SSL certificates
 
 SSL certificatesinstallation can be triggered by `/vagrant/scripts/install_addons.sh` or separate `/vagrant/scripts/addons/install_ssl_certificates.sh` scripts. It install the files from `certificates` directory. The repositiry contains certificates of github and gitlab. However, you can add more (in *.cer format) before running the script above. The script will install all the certificates that are in the folder. In order to initiate certificate script again later (if you don't want to install certificates manually via `STRUST`), login to ssh and run `/vagrant/scripts/addons/install_ssl_certificates.sh`.
+
+### Publication
+
+- [Installing NetWeaver AS ABAP 7.52 SP 01 Developer Edition with Vagrant and Ubuntu](https://blogs.sap.com/2018/09/22/installing-netweaver-as-abap-7.52-sp-01-developer-edition-with-vagrant)
+- [How to easily install SAP NetWeaver developer edition 7.52 and abapGit with Vagrant in 10 man-minutes](https://blogs.sap.com/2019/04/30/how-to-easily-install-sap-netweaver-developer-edition-7.52-and-abapgit-with-vagrant-in-10-man-minutes/)
+- [Video with installation process](https://www.youtube.com/watch?v=-BeEF1U-cqQ)
 
 ### Regards and references
 
