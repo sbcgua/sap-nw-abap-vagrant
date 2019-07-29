@@ -1,6 +1,20 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+require 'getoptlong'
+
+opts = GetoptLong.new(
+  [ '--vm-name', GetoptLong::OPTIONAL_ARGUMENT ]
+)
+  
+argMachineName=''
+opts.each do |opt, arg|
+  case opt
+    when '--vm-name'
+      argMachineName=arg
+  end
+end
+
 # Create additional disk in VM directory
 class VagrantPlugins::ProviderVirtualBox::Action::SetName
   alias_method :original_call, :call
@@ -58,7 +72,7 @@ end
 Vagrant.configure("2") do |config|
   config.vm.box      = "ubuntu/xenial64"
   config.vm.hostname = "vhcalnplci"
-  config.vm.define "sapnw"
+  config.vm.define argMachineName || "sapnw"
   
   # Check for updates only on `vagrant box outdated`
   config.vm.box_check_update = false
@@ -75,7 +89,7 @@ Vagrant.configure("2") do |config|
 
   # Virtualbox settings
   config.vm.provider "virtualbox" do |vb|
-    vb.name = "Sap-nw752"
+    vb.name   = argMachineName || "Sap-nw752"
     vb.memory = "6144" # 6 GB
     # vb.memory = "4096" # 4 GB + enable add_swap.sh below !!!
   end
