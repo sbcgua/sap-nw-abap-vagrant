@@ -11,6 +11,7 @@ Legend
 2019-07-29 v1.2.1
 ------------------
 + add command line param (--vm-name) to alter VM name
+* new gitlab certificates (had been changed some time ago)
 
 2019-03-31 v1.2.0
 ------------------
