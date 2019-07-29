@@ -1,6 +1,6 @@
 # Vagrant config for SAP NW752 SP01 dev edition
 
-*Version: 1.2*
+*Version: 1.2.1*
 
 ## What is it ?
 
@@ -23,6 +23,14 @@ For a quick start [watch this video](https://www.youtube.com/watch?v=-BeEF1U-cqQ
 - wait for installation to finish ... (took ~1-1.5 hours on my laptop)
 - you can connect to the system and follow the post-install steps from the official guide (in particular SAP licence installation). The system will be at **127.0.0.1, 00, NPL**
 - *optionally*, run `vagrant ssh -c "sudo /vagrant/scripts/install_addons.sh"` to install SSL certificates mentioned above and latest [abapGit](https://github.com/larshp/abapGit). This can only be done **AFTER** licence installation.
+
+### Additional features
+
+- specify `--vm-name` parameter to set virtual machine name explicitly instead of defaults. E.g. to create several instances. Make sure to specify the option **before** the vagrant command (e.g. `up` or `destroy`).
+
+```
+vagrant --vm-name=HelloWorld up 
+```
 
 ## How to use
 
