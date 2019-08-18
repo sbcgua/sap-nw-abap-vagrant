@@ -32,6 +32,12 @@ For a quick start [watch this video](https://www.youtube.com/watch?v=-BeEF1U-cqQ
 vagrant --vm-name=HelloWorld up 
 ```
 
+- if you specified alternative `--vm-name` you must also specify it running `ssh` or other vagrant comments (e.g. `up`, `destroy`)
+
+```
+vagrant --vm-name=HelloWorld ssh -c "sudo /vagrant/scripts/install_addons.sh"
+```
+
 ## How to use
 
 Starting from v1.1 of this repo the scripts install sapnw as a `systemd` service and enables it by default. So the netveawer should automatically start on boot (note that it will take a minute or two after the machine is up) and you should be able to connect. On the system halt the service will attempt to gracefully stop NW (with 5 min timeout). If you want to disable the service for whatever reason run `vagrant ssh -c "sudo systemctl disable sapnw"`, then start/stop sap manually (see below).
@@ -78,7 +84,7 @@ Alternatively you can run VM directly from virtual box, Vagrant did it's job by 
 ### Additional comments
 
 - you may start the vm from any directory but then you need to address it by id or name. Run `vagrant global-status` to check the name. It should be `sapnw`. So the command to vm would look like `vagrant up sapnw` or `vagrant ssh sapnw -c <command>`
-- `startsap.sh` and `stopsap.sh` are shortcuts that are placed to `/usr/local/bin` during installation. They contain command like `sudo -i -u npladm startsap`.
+- `startsap.sh` and `stopsap.sh` are shortcuts that are placed to `/usr/local/bin` during installation. They contain command like `sudo -i -u npladm startsap`
 
 ## Infos
 
