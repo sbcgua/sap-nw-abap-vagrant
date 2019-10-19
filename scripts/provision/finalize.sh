@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "Installation sequence complete"
+
 # Elapsed time calculation
 PROVISION_START_TS=`cat /tmp/provision-start.timestamp`
 PROVISION_END_TS=`date +%s`

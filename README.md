@@ -144,4 +144,3 @@ SSL certificatesinstallation can be triggered by `/vagrant/scripts/install_addon
 - migrate to Ubuntu 18.04 LTS (Bionic Beaver)
 - improve abapdeploy.js
 - early detect presence of distrib
-- timestamping the installation
