@@ -1,6 +1,6 @@
-# Vagrant config for SAP NW752 SP01 dev edition
+# Vagrant config for SAP NW752 SP01/SP04 dev edition
 
-*Version: 1.2.1*
+*Version: 1.3.0*
 
 ## What is it ?
 
@@ -11,6 +11,8 @@ This repo contains a Vagrant script and set of deployment scripts which installs
 - can *optionally* install latest abapGit
 
 For a quick start [watch this video](https://www.youtube.com/watch?v=-BeEF1U-cqQ)
+
+Confirmed to work with NW752 SP01 and **the newer SP04**.
 
 ## How to install
 
@@ -133,9 +135,13 @@ SSL certificatesinstallation can be triggered by `/vagrant/scripts/install_addon
 - @filak-sap and https://github.com/filak-sap/sap-nw-abap-docker for ideas and inspiration
 - https://github.com/SAP/node-rfc - nodejs lib to call SAP RFCs, used for SSL certificate installation
 - @marcellourbani for his https://github.com/marcellourbani/abap-adt-api (cool!)
+- [AS ABAP 752 SP04, developer edition: NOW AVAILABLE](https://blogs.sap.com/2019/07/01/as-abap-752-sp04-developer-edition-to-download)
+- [AS ABAP 7.52 SP04, Developer Edition: Concise Installation Guide](https://blogs.sap.com/2019/10/01/as-abap-7.52-sp04-developer-edition-concise-installation-guide/)
 
 ### TODO
 
 - download github/lab certificates directly from internet ?
 - migrate to Ubuntu 18.04 LTS (Bionic Beaver)
 - improve abapdeploy.js
+- early detect presence of distrib
+- timestamping the installation

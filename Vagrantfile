@@ -7,10 +7,12 @@ opts = GetoptLong.new(
   [ '--vm-name', GetoptLong::OPTIONAL_ARGUMENT ]
 )
   
-argMachineName=''
+argVagrantName = 'sapnw'
+argMachineName = 'sap-nw752sp4'
 opts.each do |opt, arg|
   case opt
     when '--vm-name'
+      argVagrantName=arg
       argMachineName=arg
   end
 end
@@ -72,7 +74,7 @@ end
 Vagrant.configure("2") do |config|
   config.vm.box      = "ubuntu/xenial64"
   config.vm.hostname = "vhcalnplci"
-  config.vm.define argMachineName || "sapnw"
+  config.vm.define argVagrantName
   
   # Check for updates only on `vagrant box outdated`
   config.vm.box_check_update = false
@@ -89,7 +91,7 @@ Vagrant.configure("2") do |config|
 
   # Virtualbox settings
   config.vm.provider "virtualbox" do |vb|
-    vb.name   = argMachineName || "Sap-nw752"
+    vb.name   = argMachineName
     vb.memory = "6144" # 6 GB
     # vb.memory = "4096" # 4 GB + enable add_swap.sh below !!!
   end
