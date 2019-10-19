@@ -103,4 +103,5 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "scripts/provision/install_nw.sh"
   config.vm.provision "shell", path: "scripts/provision/startup.sh"
   config.vm.provision "shell", path: "scripts/provision/post_install.sh"
+  config.vm.provision "shell", path: "scripts/provision/finalize.sh"
 end

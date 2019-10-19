@@ -1,10 +1,15 @@
 #!/bin/sh
 
+# Timestamp
+date +%s > /tmp/provision-start.timestamp
+
+# Check if executed before
 if [ -n "$(cat /etc/hosts | grep vhcalnplci.dummy.nodomain )" ]; then
     echo "Seems the system configs already patched, skipping"
     exit 0
 fi
 
+# Start system configurations
 echo "Patching /etc/hosts ..."
 echo "10.0.2.15 vhcalnplci vhcalnplci.dummy.nodomain" | sudo tee -a /etc/hosts
 sudo sed -i.bak '/127.*vhcalnplci/d' /etc/hosts
