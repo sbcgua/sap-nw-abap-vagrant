@@ -12,6 +12,7 @@ Legend
 ------------------
 * fix issue with "Message: GetoptLong::InvalidOption" #6
 ! changed approach to override virtual machine name (from command line org to env var)
++ add timestamp and echo elapsed time at the end of provision
 
 2019-10-19 v1.3.0
 ------------------
