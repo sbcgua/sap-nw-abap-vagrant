@@ -1,6 +1,6 @@
 # Vagrant config for SAP NW752 SP01/SP04 dev edition
 
-*Version: 1.3.0*
+*Version: 1.3.1*
 
 ## What is it ?
 
@@ -25,20 +25,6 @@ Confirmed to work with NW752 SP01 and **the newer SP04**.
 - wait for installation to finish ... (took ~1-1.5 hours on my laptop)
 - you can connect to the system and follow the post-install steps from the official guide (in particular SAP licence installation). The system will be at **127.0.0.1, 00, NPL**
 - *optionally*, run `vagrant ssh -c "sudo /vagrant/scripts/install_addons.sh"` to install SSL certificates mentioned above and latest [abapGit](https://github.com/larshp/abapGit). This can only be done **AFTER** licence installation.
-
-### Additional features
-
-- specify `--vm-name` parameter to set virtual machine name explicitly instead of defaults. E.g. to create several instances. Make sure to specify the option **before** the vagrant command (e.g. `up` or `destroy`).
-
-```
-vagrant --vm-name=HelloWorld up 
-```
-
-- if you specified alternative `--vm-name` you must also specify it running `ssh` or other vagrant comments (e.g. `up`, `destroy`)
-
-```
-vagrant --vm-name=HelloWorld ssh -c "sudo /vagrant/scripts/install_addons.sh"
-```
 
 ## How to use
 
@@ -83,6 +69,26 @@ Alternatively you can run VM directly from virtual box, Vagrant did it's job by 
 - `vagrant ssh -c startsap.sh` - start sap system
 - `vagrant ssh -c stopsap.sh` - stop sap system
 
+### Changing VM Name
+
+~~specify `--vm-name` parameter to set virtual machine name...~~ - this was deprecated in v1.3.1. Unfortunately, parsing command line args in Vagrant file conflicts with it's native args (see more in [this issue](https://github.com/sbcgua/sap-nw-abap-vagrant/issues/6)). Instead a new approach was implemented via environment variables (see below).
+
+The default name for VM is defined at the beginning of the Vagrant file in `argMachineName` variable. It is used in the code after to define the virtual machine name. You can override it by setting `VAGRANT_SAPNW_VM_NAME` environment variable for the session (or, optionally, redefine it directly in the file).
+
+The way depends on your shell:
+- cmd - `set VAGRANT_SAPNW_VM_NAME=my_new_sapnw`
+- powershell - `$env:VAGRANT_SAPNW_VM_NAME="my_new_sapnw"` (mind the double-quotes !)
+- bash - `export VAGRANT_SAPNW_VM_NAME=my_new_sapnw` or specifying the var in front of the command e.g. `VAGRANT_SAPNW_VM_NAME=my_new_sapnw vagrant ssh -c "ls -AFl"`
+
+Don't forget to set the variable, especially before the sensitive commands like `up` and `destroy`. If you work with several instances a lot you might want to create dedicated script/batch files.
+
+Example (cmd):
+```
+set VAGRANT_SAPNW_VM_NAME=my_new_sapnw
+vagrant up
+vagrant ssh -c "sudo /vagrant/scripts/install_addons.sh"
+```
+
 ### Additional comments
 
 - you may start the vm from any directory but then you need to address it by id or name. Run `vagrant global-status` to check the name. It should be `sapnw`. So the command to vm would look like `vagrant up sapnw` or `vagrant ssh sapnw -c <command>`
@@ -99,7 +105,7 @@ A tool to setup virtual environments conveniently. No need to go through boring 
 1) Imho docker is supposed to be stateless. Databases should be in volumes, not inside docker layer.
 2) Besides, docker storage layer is slower than volumes (AFAIK)
 
-P.S.: Probably this can be solved. /sybase directory can be mounted to volume. Also logs and transports should be considered. Well, I don't have enough basis skills for this :) Maybe someday.  
+P.S.: Probably this can be solved. `/sybase` directory can be mounted to volume. Also logs and transports should be considered. Well, I don't have enough basis skills for this :) Maybe someday.  
 P.P.S.: Docker has a lot of potential in terms of composability. E.g. compose several pods with NW dev edition, HANA express for sidecar, configured SMTP server and make them interact. Feel free to reuse the scripts from the repo, they should be very portable to docker, in fact they work inside Ubuntu so might be zero changes needed.
 
 ### Why Ubuntu
