@@ -1,20 +1,16 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-require 'getoptlong'
-
-opts = GetoptLong.new(
-  [ '--vm-name', GetoptLong::OPTIONAL_ARGUMENT ]
-)
-  
+# Defaults and constants
+vmNameFromEnv  = 'VAGRANT_SAPNW_VM_NAME'
 argVagrantName = 'sapnw'
 argMachineName = 'sap-nw752sp4'
-opts.each do |opt, arg|
-  case opt
-    when '--vm-name'
-      argVagrantName=arg
-      argMachineName=arg
-  end
+
+unless ENV[vmNameFromEnv].to_s.strip.empty?
+  argVagrantName = ENV[vmNameFromEnv]
+  argMachineName = ENV[vmNameFromEnv]
+  puts "[!] VAGRANT_SAPNW_VM_NAME env detected"
+  puts "[!] VM name is redefined to: #{argVagrantName}"
 end
 
 # Create additional disk in VM directory
