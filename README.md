@@ -1,6 +1,6 @@
-# Vagrant config for SAP NW752 SP01/SP04 dev edition
+![Version](https://img.shields.io/github/v/tag/sbcgua/sap-nw-abap-vagrant.svg)
 
-*Version: 1.3.1*
+# Vagrant config for SAP NW752 SP01/SP04 dev edition
 
 ## What is it ?
 
