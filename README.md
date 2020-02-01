@@ -122,7 +122,7 @@ Currently machine is setup to consume 6GB. Though in my experiance 4GB is usuall
 
 ### SSL certificates
 
-SSL certificatesinstallation can be triggered by `/vagrant/scripts/install_addons.sh` or separate `/vagrant/scripts/addons/install_ssl_certificates.sh` scripts. It install the files from `certificates` directory. The repositiry contains certificates of github and gitlab. However, you can add more (in *.cer format) before running the script above. The script will install all the certificates that are in the folder. In order to initiate certificate script again later (if you don't want to install certificates manually via `STRUST`), login to ssh and run `/vagrant/scripts/addons/install_ssl_certificates.sh`.
+SSL certificates installation can be triggered by `/vagrant/scripts/install_addons.sh` or separate `/vagrant/scripts/addons/install_ssl_certificates.sh` scripts. It install the files from `certificates` directory. The repositiry contains certificates of github and gitlab. However, you can add more (in *.cer format) before running the script above. The script will install all the certificates that are in the folder. In order to initiate certificate script again later (if you don't want to install certificates manually via `STRUST`), login to ssh and run `/vagrant/scripts/addons/install_ssl_certificates.sh`.
 
 ### Publication
 
