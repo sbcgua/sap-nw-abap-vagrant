@@ -91,7 +91,12 @@ Vagrant.configure("2") do |config|
     vb.memory = "6144" # 6 GB
     # vb.memory = "4096" # 4 GB + enable add_swap.sh below !!!
   end
-
+#MAC FILE PERMISSIONS
+config.vm.provision "shell", inline: <<-SHELL
+    chmod +x /vagrant/scripts/provision/*.sh
+    chmod +x /vagrant/distrib/install.sh
+    
+SHELL
   # Provision scripts
   config.vm.provision "shell", path: "scripts/provision/add_disk.sh"
   # config.vm.provision "shell", path: "scripts/provision/add_swap.sh"
