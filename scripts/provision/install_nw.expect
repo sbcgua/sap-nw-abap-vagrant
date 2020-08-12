@@ -1,5 +1,5 @@
 #!/usr/bin/expect -f
-spawn ./install.sh -s -k
+spawn bash ./install.sh -s -k
 set PASSWORD "SapPwd1!"
 set timeout -1
 expect "Do you agree to the above license terms? yes/no:"
