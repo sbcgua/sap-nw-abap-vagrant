@@ -2,6 +2,15 @@
 
 # Vagrant config for SAP NW752 SP01/SP04 dev edition
 
+## [PINNED] 2020-03 SYBASE LICENCE update
+
+The sybase DB license included in the original distrib expired on March 2021. The new license can be obtained as described here: https://blogs.sap.com/2018/08/30/as-abap-7.5x-ase-license-available/
+
+In order to include this file into a new installation:
+1. Place the `SYBASE_ASE_TestDrive.lic` file into distrib folder, near `install.sh` script.
+2. Edit `Vagrantfile`, uncomment `config.vm.provision "shell", path: "scripts/provision/patch_install_script.sh"` line near the end of the file.
+3. This will adjust the `install.sh` script so that it find and copies the new licence after uncompressing the files and before start of the SAP installation.
+
 ## What is it ?
 
 This repo contains a Vagrant script and set of deployment scripts which installs SAP NW752 SP01 dev edition in Ubuntu in Virtual Box environment with **minimal** manual steps required. The target is that you copy the script, download distribs, run Vagrant which will do allmost of steps from the offical guide and some more, and then you have ready system which just needs the post install license steps. In addition to the official installation guide the script does:

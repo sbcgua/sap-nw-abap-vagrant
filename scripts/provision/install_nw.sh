@@ -16,6 +16,7 @@ cd /vagrant/distrib
 # chmod +x install.sh
 # chmod +x /tmp/run-install.sh
 sudo expect -f /vagrant/scripts/provision/install_nw.expect
+echo "sapinstall script result =" $?
 # rm /tmp/run-install.sh
 
 if [ ! -n "$(netstat -tan4 | grep 3200)" ]; then

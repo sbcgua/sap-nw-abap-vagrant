@@ -1,0 +1,17 @@
+--- distrib/install.sh	2021-07-06 09:56:14.683716400 +0300
++++ distrib/install.sh.patched	2021-07-06 09:57:15.318428000 +0300
+@@ -1100,6 +1100,14 @@
+         extract_tar
+     }
+ 
++    echo "BEGIN: SYBASE LICENSE COPY !!!"
++    ls -AFL /sybase/NPL/SYSAM-2_0/licenses/
++    rm /sybase/NPL/SYSAM-2_0/licenses/*.lic
++    cp /vagrant/distrib/SYBASE_ASE_TestDrive.lic /sybase/NPL/SYSAM-2_0/licenses/SYBASE_ASE_TD.lic
++    chown 1003:1002 /sybase/NPL/SYSAM-2_0/licenses/SYBASE_ASE_TD.lic
++    ls -AFl /sybase/NPL/SYSAM-2_0/licenses/
++    echo "END: SYBASE LICENSE COPY !!!"
++
+     echo $tasks | grep -q $TASK_install && {
+         server_install
+     }

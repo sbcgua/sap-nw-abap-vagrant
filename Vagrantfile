@@ -95,6 +95,7 @@ Vagrant.configure("2") do |config|
   # Provision scripts
   config.vm.provision "shell", path: "scripts/provision/add_disk.sh"
   # config.vm.provision "shell", path: "scripts/provision/add_swap.sh"
+  # config.vm.provision "shell", path: "scripts/provision/patch_install_script.sh"
   config.vm.provision "shell", path: "scripts/provision/pre_install.sh"
   config.vm.provision "shell", path: "scripts/provision/install_nw.sh"
   config.vm.provision "shell", path: "scripts/provision/startup.sh"
